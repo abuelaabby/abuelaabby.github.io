@@ -62,7 +62,7 @@
   // ============================================================================
 
   var path = "www.amazon.com/dp/" + ASIN + "?tag=" + TAG;
-  var webUrl = "https://" + path;
+  var webUrl = "https://link.amazon/B02H8P2qy";
 
   var ua = navigator.userAgent || "";
   var isAndroid = /android/i.test(ua);
