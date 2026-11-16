@@ -48,8 +48,8 @@
 </head>
 <body>
 <main>
-  <h1>Abriendo Amazon…</h1>
-  <p>Si no se abre solo, toca el botón.</p>
+  <h1 id="title">Abriendo Amazon…</h1>
+  <p id="hint">Si no se abre solo, toca el botón.</p>
   <a id="app" class="btn primary" href="#">Abrir en la app de Amazon</a>
   <a id="web" class="btn secondary" href="#">Abrir en el navegador</a>
   <small>Como afiliada de Amazon, Abuela Abby gana una comisión por las compras que cumplen los requisitos.</small>
@@ -62,7 +62,7 @@
   // ============================================================================
 
   var path = "www.amazon.com/dp/" + ASIN + "?tag=" + TAG;
-  var webUrl = "https://link.amazon/B02H8P2qy";
+  var webUrl = "https://" + path;
 
   var ua = navigator.userAgent || "";
   var isAndroid = /android/i.test(ua);
@@ -81,6 +81,13 @@
 
   document.getElementById("app").href = appUrl;
   document.getElementById("web").href = webUrl;
+
+  if (isAndroid) {
+    // En Android, Instagram suele bloquear la apertura automática:
+    // el texto invita directamente a tocar el botón.
+    document.getElementById("title").textContent = "El libro de Abuela Abby";
+    document.getElementById("hint").textContent = "Toca el botón para verlo en la app de Amazon.";
+  }
 
   if (!isAndroid && !isIOS) {
     // Computadora: directo a la web de Amazon.
